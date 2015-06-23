@@ -1,0 +1,299 @@
+
+
+
+
+
+<html>
+    <head>
+
+
+
+
+        <script type="text/javascript">
+        //<![CDATA[
+
+        <!-- Array containing original comics -->
+        var image= new Array();
+        image[0]='11.jpg';
+        image[1]='2.jpg';
+        image[2]='3.jpg';
+        image[3]='4.jpg';
+        image[4]='5.jpg';
+        image[5]='6.jpg';
+        image[6]='7.jpg';
+        image[7]='8.jpg';
+        image[8]='9.jpg';
+        image[9]='10.jpg';
+        image[10]='1.jpg';
+
+
+        <!--Array containing edited comics -->
+        var edit = new Array();
+        edit[0]='11_edit.jpg';
+        edit[1]='2_edit.jpg';
+        edit[2]='3_edit.jpg';
+        edit[3]='4_edit.jpg';
+        edit[4]='5_edit.jpg';
+        edit[5]='6_edit.jpg';
+        edit[6]='7_edit.jpg';
+        edit[7]='8_edit.jpg';
+        edit[8]='9_edit.jpg';
+        edit[9]='10_edit.jpg';
+        edit[10]='1_edit.jpg';
+
+
+
+        <!--GLOBAL VARIABLES-->
+        var k=0; //variable to switch between original and modified image.
+        var i=0; //variable used for button navigation.
+        var rand = Math.floor(Math.random() * image.length);
+
+
+        function previous(){
+            if(i>=1){
+                i=i-1;
+                document.getElementById("imageMap").src = image[i]
+            }
+        }
+        function next(){
+            if((i>=0)&&(i<=image.length-2)){
+                i=i+1;
+                document.getElementById("imageMap").src = image[i]
+            }
+        }
+        function wild(){
+            if(rand <= image.length){
+                i = rand
+                document.getElementById("imageMap").src = image[i]
+                rand = Math.floor(Math.random() * image.length)
+            }
+
+        }
+        <!--Function used to switch from modified image to original image-->
+           function changeimage(){
+              if (k==0){
+                 k=1;
+                 document.getElementById("imageMap").src=image[i]
+              }else{
+                 k=0;
+                 document.getElementById("imageMap").src=edit[i]
+               }
+            }
+
+
+//]]>
+</script>
+
+
+        <style type="text/css" >
+
+            body{
+                font-size:13px;
+                font-family:"Arial";
+            }
+            #mapper{
+                border:5px solid #EEE;
+                width:100px;
+                height:100px;
+                min-width:100px;
+                min-height:100px;
+                z-index:1000;
+                position:absolute;
+                top:0;
+                display:none;
+                cursor:pointer
+            }
+            p {line-height: 2em;}
+
+
+
+.tabs ul {
+    list-style: none;
+}
+
+.tabs ul li {
+    float: left;
+    background: #eee;
+    border: 1px #aaa solid;
+    border-bottom: none;
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.tabs ul li.active {
+    margin-bottom: -1px;
+    padding-bottom: 6px;
+}
+
+.tabInner {
+    clear: both;
+    border: 1px solid #aaa;
+    height: 200px;
+    overflow: hidden;
+    background: #eee;
+}
+
+.tabInner div {
+    height: 200px;
+    padding: 10px;
+
+}
+
+
+
+            <!--Basically the images-->
+            #planetmap div{
+
+                display:block;
+                position:absolute;
+            }
+
+
+
+
+            #main_panel{
+                margin: auto;
+                padding: 10px;
+                width: 1000px;
+            }
+            #url_panel{
+
+            }
+            #form_panel{
+                float: left;
+                background:#eee;
+                border:5px solid #FFF;
+                outline:1px solid #eee;
+                left: 100px;
+                padding: 5px;
+                position: absolute;
+                top: 40px;
+                width: 310px;
+                display:none;
+                z-index:2000;
+            }
+
+            #form_panel input,textarea{
+                padding:3px;
+                background:#FFF;
+                border:1px solid #CFCFCF;
+                color:#000;
+            }
+
+            #image_panel{
+                float:left;
+                width:600px;
+                position:relative;
+            }
+            #image_panel img{
+                left:0;top:-102px;
+                max-width: 600px;
+                overflow: hidden;
+
+            }
+
+
+
+            #info_panel{
+                padding:10px;
+                margin:20px 0;
+                background:#eee;
+            }
+
+
+            input[type='button']{
+                background: none repeat scroll 0 0 #2769C4;
+                border: 1px solid #CFCFCF;
+                color: #FFFFFF;
+                font-weight: bold;
+                height: 30px;
+                padding: 5px;
+            }
+
+
+        </style>
+
+    </head>
+    <body bgcolor="#EFD6EF">
+
+                 <h1 style="text-align:center">Instructions:</h1>
+                 <p style="text-align:center"><font size="3">Click on the image to switch between the original and the edited comic.</p></font>
+
+
+
+
+        <div id='main_panel'>
+
+             <div style='margin: auto; width: 600px;'>
+                <div id='image_panel' >
+                      <div style="background: none repeat scroll 0 0 #C7C7C8;
+                 border: 1px solid #AEAEAE;
+                 clear: both;
+                 padding: 20px 0;
+                 text-align: Center;
+                 opacity:0.5;
+                 width: 600px;">
+
+
+
+                <!--Where the navigation buttons go-->
+                <input type="button" title="Go to previous image" value="Previous" onclick="previous()"/>
+                <input type="button" title="Open image library" value="Random" onclick="wild()"/>
+                <input type="button" title="Go to next image" value="Next" onclick="next()"/>
+
+
+
+            </div>
+
+
+
+</head>
+
+
+
+                    <!--What the user of first sees when they open the page-->
+                    <p><img src='11.jpg'  id='imageMap' title="Is this the original image?"  width="800" height="400" onclick="changeimage()"  /></p>
+
+
+
+    <div class="tabs">
+        <ul>
+            <li class="active"><a href="#item1">What is this about?</a></li>
+            <li><a href="#item2">Creators?</a></li>
+        </ul>
+        <div class="tabInner">
+            <div id="item1">
+                <p> <style="text-align:center">
+                    Katherine Barsaloux and Keenan Hampton took comics throughout the years that have some gender role
+                    or sexist undertone and swapped the dialogue
+                    in the scene (i.e if the man says something like &#8220;women are fragile&#8221; the caption would be changed
+                    to &#8221;men are fragile&#8221; and the woman would be saying it).
+                     This is to show a gender role issue and sexist undertone in not just men, but women as well.
+                     The modified images are placed in a HTML template hosted on Katherine Barsaloux&#8217;s UCSC student page,
+                     where users can scroll through and click on the images to see our edited work.
+                    All image edits were done using Adobe Photoshop CS 6.
+                </p>
+
+            </div>
+            <div id="item2">
+                <p> <font size="4"><b>Code by:</b> Katherine Barsaloux</p>
+                <p><b>Image edits by:</b> Katherine Barsaloux & Keenan Hampton</p>
+                <a href="http://people.ucsc.edu/~kbarsalo/about.html">For more about us click here!</a>
+                </font>
+
+            </div>
+        </div>
+    </div>
+
+
+
+            </div>
+        </div>
+    </body>
+
+
+</html>
+
+
+
+
